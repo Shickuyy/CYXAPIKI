@@ -1,0 +1,328 @@
+/* Основные стили */
+:root {
+    --primary-color: #8B4513;
+    --secondary-color: #A0522D;
+    --accent-color: #FFD700;
+    --wax-bg: linear-gradient(135deg, #FFF8DC 0%, #F0E68C 100%);
+    --esoteric-bg: linear-gradient(135deg, #E6E6FA 0%, #D8BFD8 100%);
+    --text-color: #333;
+    --white: white;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #f9f9f9 0%, #e0e0e0 100%);
+    color: var(--text-color);
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Фиксируем высоту на весь viewport для полного заполнения на ПК */
+}
+
+header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 2rem 1rem;
+    text-align: center; /* Центрируем текст в header */
+    display: flex; /* Flex для строгого центрирования */
+    flex-direction: column;
+    justify-content: center; /* Вертикальный центр */
+    align-items: center; /* Горизонтальный центр */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    animation: headerGlow 2s ease-in-out infinite alternate;
+    flex-shrink: 0; /* Не сжимается */
+}
+
+@keyframes headerGlow {
+    0% { box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
+    100% { box-shadow: 0 4px 20px rgba(139, 69, 19, 0.5); }
+}
+
+header h1 {
+    margin: 0; /* Убрал margin, чтобы не сдвигало */
+    font-size: clamp(1.8em, 5vw, 2.5em); /* Адаптивный размер — "Свечи" всегда по центру */
+    color: var(--accent-color);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: fadeInDown 1s ease-out;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+header p {
+    margin: 0.5rem 0;
+    font-size: clamp(1em, 3vw, 1.2em);
+}
+
+.phone {
+    font-size: clamp(1.2em, 4vw, 1.5em);
+    font-weight: bold;
+    color: var(--accent-color);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+nav {
+    background: linear-gradient(90deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem; /* Для растяжения на больших экранах */
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: clamp(1em, 2.5vw, 1.3em);
+    font-weight: bold;
+    transition: all 0.3s ease;
+    position: relative;
+    cursor: pointer;
+    white-space: nowrap; /* Не переносит текст */
+}
+
+nav a::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 50%;
+    background-color: var(--accent-color);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+nav a:hover {
+    transform: scale(1.1);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+nav a:hover::before {
+    width: 100%;
+}
+
+nav a.active {
+    color: var(--accent-color);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+nav a.active::before {
+    width: 100%;
+}
+
+main {
+    flex: 1; /* Растягивает на оставшееся пространство */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 0; /* Для правильного flex */
+    overflow: hidden; /* Предотвращаем скролл в main */
+}
+
+section {
+    padding: clamp(2rem, 5vw, 4rem) 0; /* Убрал боковой padding, чтобы фон растягивался полностью */
+    margin: 0;
+    width: 100%; /* Полная ширина экрана */
+    animation: fadeInUp 0.5s ease-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%; /* Растягиваем секцию на всю высоту main */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Центрируем контент вертикально */
+    align-items: center; /* Центрируем горизонтально */
+    overflow-y: auto; /* Если контент длинный */
+    display: none; /* По умолчанию скрыты */
+    box-sizing: border-box; /* Учитываем padding в height */
+}
+
+section.active {
+    display: flex; /* Показываем только активную */
+    animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.section-wax {
+    background: var(--wax-bg);
+}
+
+.section-esoteric {
+    background: var(--esoteric-bg);
+}
+
+h1, h2 {
+    text-align: center;
+    font-size: clamp(1.5em, 4vw, 2em);
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1200px; /* Ограничиваем только текст заголовка */
+}
+
+section p {
+    text-align: center;
+    width: 100%;
+    max-width: 800px; /* Ограничиваем ширину описания */
+    margin: 0 auto 2rem;
+    padding: 0 1rem;
+}
+
+.product {
+    border: 1px solid #ddd;
+    margin: clamp(1rem, 3vw, 2rem) auto;
+    padding: clamp(1rem, 3vw, 2rem);
+    background: var(--white);
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 600px; /* Ограничиваем ширину панели */
+    display: block; /* Убеждаемся, что она блочная для центрирования */
+}
+
+.product::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s;
+}
+
+.product:hover::before {
+    left: 100%;
+}
+
+.product:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.product h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+    font-size: clamp(1.2em, 3vw, 1.5em);
+    text-align: center;
+}
+
+.product p {
+    text-align: center;
+    line-height: 1.5;
+}
+
+.price {
+    font-size: clamp(1.4em, 4vw, 1.8em);
+    color: var(--primary-color);
+    font-weight: bold;
+    display: block;
+    margin: 1rem auto;
+    text-align: center;
+    animation: pulse 2s infinite ease-in-out;
+    position: relative;
+}
+
+@keyframes pulse {
+    0%, 100% { font-size: clamp(1.4em, 4vw, 1.8em); }
+    50% { font-size: calc(clamp(1.4em, 4vw, 1.8em) * 1.08); }
+}
+
+footer {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    animation: footerSlide 0.5s ease-out;
+    flex-shrink: 0;
+    margin-top: auto; /* Толкаем футер вниз в flex */
+}
+
+@keyframes footerSlide {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+footer p {
+    margin: 0.5rem 0;
+    font-size: clamp(0.9em, 2.5vw, 1em);
+}
+
+/* Адаптивность для планшетов (768px - 1024px) */
+@media (max-width: 1024px) {
+    nav {
+        gap: 1rem;
+    }
+    
+    .product {
+        max-width: 90%;
+    }
+}
+
+/* Адаптивность для мобильных (до 768px) */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    nav a {
+        margin: 0;
+    }
+    
+    section {
+        padding: 2rem 1rem;
+        justify-content: flex-start; /* На мобильных не центрируем строго, чтобы не обрезать */
+        padding-top: 3rem; /* Отступ от nav */
+    }
+    
+    .product {
+        padding: 1.5rem;
+        margin: 1rem 0;
+        max-width: 100%;
+    }
+    
+    header {
+        padding: 1.5rem 1rem;
+    }
+    
+    footer {
+        padding: 0.8rem;
+    }
+}
+
+/* Для очень маленьких экранов (до 480px) */
+@media (max-width: 480px) {
+    header p {
+        font-size: 1em;
+    }
+    
+    .phone {
+        font-size: 1.2em;
+    }
+    
+    section p {
+        font-size: 0.95em;
+        padding: 0 0.5rem;
+    }
+}
