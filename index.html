@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Свечи - Восковые и Эзотерические Свечи</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Свечи</h1>
+        <p>Качественные восковые и эзотерические свечи для дома и души</p>
+        <p class="phone">Телефон: +375 XX XXX XXXX</p>
+    </header>
+
+    <nav>
+        <a href="#wax" class="nav-link active">Восковые свечи</a>
+        <a href="#esoteric" class="nav-link">Эзотерические свечи</a>
+    </nav>
+
+    <main>
+        <section id="wax" class="section-wax active">
+            <h2>Восковые свечи</h2>
+            <p>Классические свечи из натурального воска для уютного освещения и ароматизации пространства.</p>
+            
+            <div class="product">
+                <h3>Свеча "Классика" (белая, 200г)</h3>
+                <p>Простая и элегантная свеча для повседневного использования.</p>
+                <span class="price">15 BYN</span>
+            </div>
+        </section>
+
+        <section id="esoteric" class="section-esoteric">
+            <h2>Эзотерические свечи</h2>
+            <p>Свечи с магическими свойствами для ритуалов, медитаций и энергетической работы.</p>
+            
+            <div class="product">
+                <h3>Свеча "Защита" (черная, 150г)</h3>
+                <p>Для защиты от негативной энергии.</p>
+                <span class="price">15 BYN</span>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Свяжитесь с нами: <span class="phone">+375 XX XXX XXXX</span></p>
+        <p>&copy; 2025 Свечи. Все права защищены.</p>
+    </footer>
+
+    <script>
+        // Обработчик для переключения секций
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // Убираем активный класс у всех ссылок и секций
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+                
+                // Добавляем активный класс к текущей ссылке и секции
+                this.classList.add('active');
+                const targetId = this.getAttribute('href').substring(1); // Убираем #
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
