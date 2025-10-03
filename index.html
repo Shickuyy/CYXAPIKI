@@ -24,7 +24,7 @@
             <p>Классические свечи из натурального воска для уютного освещения и ароматизации пространства.</p>
             
             <div class="product">
-                <h3>Свеча "Классика" (белая, 200г)</h3>
+                <h3>Свеча 1</h3>
                 <p>Простая и элегантная свеча для повседневного использования.</p>
                 <span class="price">15 BYN</span>
             </div>
@@ -35,7 +35,7 @@
             <p>Свечи с магическими свойствами для ритуалов, медитаций и энергетической работы.</p>
             
             <div class="product">
-                <h3>Свеча "Защита" (черная, 150г)</h3>
+                <h3>Свеча 2</h3>
                 <p>Для защиты от негативной энергии.</p>
                 <span class="price">15 BYN</span>
             </div>
@@ -48,21 +48,19 @@
     </footer>
 
     <script>
-        // Обработчик для переключения секций
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', function (e) {
                 e.preventDefault();
                 
-                // Убираем активный класс у всех ссылок и секций
                 document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
                 document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
                 
-                // Добавляем активный класс к текущей ссылке и секции
                 this.classList.add('active');
-                const targetId = this.getAttribute('href').substring(1); // Убираем #
+                const targetId = this.getAttribute('href').substring(1);
                 document.getElementById(targetId).classList.add('active');
             });
         });
     </script>
 </body>
+
 </html>
